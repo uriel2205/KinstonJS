@@ -27,7 +27,7 @@ async function connect(){
 
     try{
 
-        const conn = await amqp.connect(rabbitSettings);
+        const conn = await amqp.connect(rabbitSettings[0]);
         console.log("Connection Created...");
 
         const channel = await conn.createChannel();
@@ -38,7 +38,7 @@ async function connect(){
 
         for(let msg in msgs){
             await channel.sendToQueue(queue, Buffer.from(JSON.stringify(msgs[msg])));
-            console.log('Message sent${queue}');
+            console.log('Mensaje enviado a la cola ${queue}');
         }
 
 
