@@ -1,0 +1,15 @@
+{
+    "name": "kinstonrabbitmq",
+    "version": "1.0.0",
+    "description": "rabbit messages with docker",
+    "main": "producer.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Uriel Vargas",
+    "license": "ISC",
+    "dependencies": {
+      "amqplib": "^0.5.5"
+    }
+  }
