@@ -29,7 +29,6 @@ async function connect(){
 
         const conn = await amqp.connect(rabbitSettings[1]);
         console.log("Connection Created...");
-
         const channel = await conn.createChannel();
         console.log("Channel Created...");
 
@@ -39,12 +38,23 @@ async function connect(){
         for(let msg in msgs){
             await channel.sendToQueue(queue, Buffer.from(JSON.stringify(msgs[msg])));
             console.log('Message sent ${queue}');
-        }
+    }
 
 
 
     } catch(err){
         const conn = await amqp.connect(rabbitSettings[2]);
         console.log("Connection Created...");
+        const channel = await conn.createChannel();
+        console.log("Channel Created...");
+
+        const res = await channel.assertQueue(queue);
+        console.log("Queue Created...");
+
+        for(let msg in msgs){
+            await channel.sendToQueue(queue, Buffer.from(JSON.stringify(msgs[msg])));
+            console.log('Message sent ${queue}');
     }
+    }
+       
 }
